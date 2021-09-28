@@ -63,7 +63,7 @@ namespace MVCMovie.Controllers
                 return NotFound();
             }
 
-            return View(movie);                         // instance if Movie model is passed to the Details View
+            return View(movie);     // instance of Movie model is passed to the Details View
         }
 
         // GET: Movies/Create
@@ -79,7 +79,7 @@ namespace MVCMovie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)  // checks the validation attributes on Movie.cs and allows update if OK
             {
                 _context.Add(movie);
                 await _context.SaveChangesAsync();
