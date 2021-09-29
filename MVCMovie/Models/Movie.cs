@@ -6,6 +6,7 @@ namespace MVCMovie.Models
 {
     public class Movie
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }  // primary Key for DB.
 
         [StringLength(60, MinimumLength = 3)]

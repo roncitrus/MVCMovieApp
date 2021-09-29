@@ -27,20 +27,27 @@ namespace MVCMovie
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<MvcMovieContext>(options =>           // registers the database context for DI into the controller
-            {
-                var connectionString = Configuration.GetConnectionString("MvcMovieContext"); // adds/reads from connection string in the appsettings.json file
-
-                if (Environment.IsDevelopment())
-                {
-                    options.UseSqlite(connectionString);
-                }
-                else
-                {
-                    options.UseSqlServer(connectionString);
-                }
-            });   
+            services.AddDbContext<MvcMovieContext>(
+                options => options.UseNpgsql(
+                    Configuration.GetConnectionString("MvcMovieContext")// reads from connection string in the appsettings.json file
+                )
+             );  // registers the database context for DI into the controller
         }
+        
+        // Previous SQLite code: 
+        //{
+        //    var connectionString = Configuration.GetConnectionString("MvcMovieContext"); 
+
+        //    if (Environment.IsDevelopment())
+        //    {
+        //        options.UseSqlite(connectionString);
+        //    }
+        //    else
+        //    {
+        //        options.UseSqlServer(connectionString);
+        //    }
+        //});   
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
