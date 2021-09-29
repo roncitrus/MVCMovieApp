@@ -10,6 +10,7 @@ public class MvcMovieContext : DbContext  // DbContext represents a database ses
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+        builder.UseSerialColumns();
         builder.ApplyConfiguration(new MovieConfiguration());
     }
 

@@ -6,7 +6,8 @@ namespace MVCMovie.Models
 {
     public class Movie
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }  // primary Key for DB.
 
         [StringLength(60, MinimumLength = 3)]
@@ -17,7 +18,7 @@ namespace MVCMovie.Models
         [DataType(DataType.Date)]   // Only the date is displayed, not time.  User not requeired to enter time info.
         public DateTime ReleaseDate { get; set; }
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z\s]*$")]
+        [RegularExpression(@"^[A-Z]+[a-z-_A-Z\s]*$")]
         [Required]
         [StringLength(30)]
         public string Genre { get; set; }
